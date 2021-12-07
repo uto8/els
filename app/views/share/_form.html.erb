@@ -1,5 +1,5 @@
 <%= form_with(model:@user, local:true) do |f| %>
-  <%= render "share/error_message" %>
+    <%= render "share/error_message" %>
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control mb-2", placeholder: "Enter Name" %>
     <%= f.label :email %>
@@ -9,5 +9,4 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, class: "form-control mb-4", placeholder: "Confirm Password" %>
     <%= f.submit submit_name,class:"btn btn-primary btn-block",placeholder:"Create an account" %>
-   
 <% end %>
