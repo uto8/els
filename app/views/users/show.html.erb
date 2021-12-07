@@ -1,10 +1,9 @@
 <% provide(:title, @user.name) %>
 <div class="card" style="width: 18rem;">
-  <div class="card-header">User-Information</div>
-  <div class="card-body text-center">
-    <%= gravatar_for(@user, size: 200) %>
-    <h4 class="card-text text-center"><%= @user.name %></h4>
-    <p class="text-center"><%= @user.email %></p>
-    
-  </div>
+    <div class="card-header">User-Information</div>
+    <div class="card-body text-center">
+        <%= gravatar_for(@user, size: 200) %>
+        <h4 class="card-text text-center"><%= @user.name %></h4>
+        <p class="text-center"><%= @user.email %></p>     
+    </div>
 </div>
