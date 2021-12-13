@@ -4,6 +4,9 @@
     <div class="card-body text-center">
         <%= gravatar_for(@user, size: 200) %>
         <h4 class="card-text text-center"><%= @user.name %></h4>
-        <p class="text-center"><%= @user.email %></p>     
+        <p class="text-center"><%= @user.email %></p> 
+        <% if @user.admin == true %>
+            <%= link_to "Admin dashboad", admin_dashboard_path, class: "btn btn-success btn-block"%> 
+        <% end %>
     </div>
 </div>

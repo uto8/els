@@ -6,4 +6,10 @@ class ApplicationController < ActionController::Base
             redirect_to root_path
         end
     end
+    def admin_user
+        if !current_user.admin == true
+            flash[:danger]="You don't have permission"
+            redirect_to root_path
+        end
+    end
 end
