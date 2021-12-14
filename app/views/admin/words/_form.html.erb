@@ -1,0 +1,13 @@
+<%= form_with(model: [:admin, @category, @word], local:true) do |f| %>
+    <%= render "share/error_message", object: f.object %>
+    <%= f.label :content %>
+    <%= f.text_field :content, class: "form-control mb-2", placeholder: "Enter Word" %><hr>
+    <%= f.fields_for :choices do |f| %>
+        <%= f.text_field :content, class: "form-control mb-2", placeholder: "Enter Choice" %>  
+        <div class="check-box">
+            <%= f.check_box :correct %>
+            Answer
+        </div>
+    <% end %>
+    <%= f.submit submit_name,class:"btn btn-primary btn-block" %>
+<% end %>
