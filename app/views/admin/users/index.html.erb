@@ -8,34 +8,37 @@
         <div class="card">
             <div class="card-header">Over View</div>
             <div class="card-body">
-              <div class="row">
-                <table class="table">
-                  <tr>
-                    <td>Avater</td>
-                    <td>Name</td>
-                    <td>E-mail</td>
-                    <td>Date join</td>
-                    <td>Action</td>
-                  </tr>
-                  <% @users.each do |user| %>
-                  <tr>
-                    <td><%= gravatar_for user, size: 52 %></td>
-                    <td><%= user.name %></td>
-                    <td><%= user.email %></td>
-                    <td><%= user.created_at %></td>
-                    <% if user.admin? %>
-                    <td>
-                      <%= link_to "Remove", admin_user_path(user), method: :delete, class: "btn btn-danger btn-block" %>
-                    </td>
-                    <% else %> 
-                    <td>
-                      <%= link_to "Add", admin_user_path(user), method: :patch, class: "btn btn-success btn-block" %>
-                    </td>
-                    <% end %>
-                  </tr>
-                  <% end %>
-                </table>
-              </div>
+                <div class="row">
+                    <table class="table">
+                        <tr>
+                            <td>Avater</td>
+                            <td>Name</td>
+                            <td>E-mail</td>
+                            <td>Date join</td>
+                            <td>Action</td>
+                        </tr>
+                        <% @users.each do |user| %>
+                            <tr>
+                                <td><%= gravatar_for user, size: 52 %></td>
+                                <td><%= user.name %></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.created_at.to_date %></td>
+                                <% if user.admin? %>
+                                    <td>
+                                        <%= link_to "Remove", admin_user_path(user), method: :delete, class: "btn btn-danger btn-block" %>
+                                    </td>
+                                <% else %> 
+                                    <td>
+                                        <%= link_to "Add", admin_user_path(user), method: :patch, class: "btn btn-success btn-block" %>
+                                    </td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                    </table>
+                    <div class="mb-3" style="margin:auto;">
+                        <%= will_paginate @categories %>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

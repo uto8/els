@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'users/index'
-  end
-  namespace :admin do
+   namespace :admin do
     get "/dashboard", to: 'pages#home'
     resources :users, only: [:index, :update, :destroy]
+    resources :categories do 
+      resources :words
+    end
    end
   root "pages#home"
   get '/about', to:'pages#about'

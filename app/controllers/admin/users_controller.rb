@@ -1,6 +1,8 @@
 class Admin::UsersController < ApplicationController
+  before_action :admin_user, only: :home
+  before_action :logged_in_user
   def index
-    @users=User.all
+    @users=User.paginate(page: params[:page], per_page: 10).order(created_at: :desc) 
     @user=User.find_by(params[:id])
   end
   def update
