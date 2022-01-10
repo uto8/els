@@ -1,0 +1,19 @@
+<h1 class="text-center"><%= @category.title %></h1>
+<p class="text-center"><%= @category.description %></p>
+<div class="mb-5"style="background:#EEEEEE; height:20px;"></div>
+<p class="text-center"> of 17</p>
+<div class="card text-center" style="width: 600px; margin:0 auto;">
+    <div class="card-header">
+        <%= @word.content %>
+    </div>
+    <div class="card-body">
+        <% @word.choices.each do |choice| %>
+            <%= form_with(model: [@lesson, @answer], local:true) do |f| %>
+                <%= f.hidden_field :lesson_id, value: @lesson.id %>
+                <%= f.hidden_field :word_id, value: @word.id %>
+                <%= f.hidden_field :choice_id, value: choice.id %>
+                <%= f.submit choice.content, class: "btn btn-outline-info btn-block mb-2" %>
+            <% end %>
+        <% end %>
+    </div>
+</div>

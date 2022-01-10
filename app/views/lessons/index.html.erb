@@ -1,0 +1,32 @@
+<div class="container">
+<%= render "share/flash_message" %>
+    <div class="row row-cols-2">
+        <% @categories.each do |category| %>
+            <div class="col mb-3">
+                <div class="card" width="100%">
+                    <div class="card-header" style="display:flex; justify-content:space-between;">
+                        <p style="margin-bottom:0;"><%= category.title %></p>
+                        <span class="badge badge-secondary">secondary</span>
+                    </div>
+                    <div class="card-body" style="display:flex; justify-content:space-between;">
+                        <p><%= category.description %></p>
+                        <% if !current_user.lesson_taken(category) %>
+                        <%= link_to "Start lesson","" ,class:"btn btn-success" %>
+                        <% else %>
+                            <% if current_user.lesson_taken(category).result %>
+                                <%= link_to "See result" ,"", class:"btn btn-primary" %>
+                            <% else %>
+                                <%= link_to "Continue lesson" ,"", class:"btn btn-danger" %>
+                            <% end %>
+                        <% end %>
+                    </div>
+                    
+                </div>
+            </div>
+        <% end %>
+    </div>
+    
+</div>
+<div class="mb-3" style="margin:auto; width:max-content">
+        <%= will_paginate @categories %>
+    </div>

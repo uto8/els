@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-   namespace :admin do
+  get 'answers/index'
+  get 'answers/new'
+  namespace :admin do
     get "/dashboard", to: 'pages#home'
     resources :users, only: [:index, :update, :destroy]
     resources :categories do 
       resources :words
     end
-   end
+  end
   root "pages#home"
   get '/about', to:'pages#about'
   get '/contact', to:'pages#contact'
@@ -15,5 +17,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy'
   
   resources :sessions, only: :create
+  resources :lessons do
+    resources :answers
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
