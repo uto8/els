@@ -14,7 +14,7 @@ class Admin::CategoriesController < ApplicationController
      end
   end
   def index
-    @categories =Category.paginate(page: params[:page], per_page: 10).order(created_at: :desc) 
+    @categories =Category.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
   end
 
   def edit
