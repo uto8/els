@@ -29,3 +29,23 @@
     password_confirmation: "password",
     admin: 1
   )
+  20.times do |n|
+    title = Faker::Game.platform
+    description = Faker::Lorem.sentence
+    category = Category.create!(title: title,
+                                description: description)
+  
+    5.times do
+      word = category.words.build content: Faker::Game.title
+      word.choices = [
+        Choice.new(content: Faker::Game.genre, correct: false),
+        Choice.new(content: Faker::Game.genre, correct: true),
+        Choice.new(content: Faker::Game.genre, correct: false),
+      ].shuffle
+      word.save(validate: false)
+    end
+  end
+  
+  
+  
+  puts "Seeding done."

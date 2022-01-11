@@ -1,0 +1,21 @@
+<h1 class="text-center mb-3">Lesson Show</h1>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Word</th>
+      <th scope="col">Choice</th>
+      <th scope="col">Correct</th>
+      <th scope="col">Mark</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @answers.each do |answer| %>
+    <tr>
+      <td><%= answer.word.content %></td>
+      <td><%= answer.choice.content  %></td>
+      <td><%= answer.word.correct_answer.content  %></td>
+      <td><%= icon(answer.choice, answer.word.correct_answer) %></td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>
