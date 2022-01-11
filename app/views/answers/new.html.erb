@@ -1,6 +1,10 @@
 <h1 class="text-center"><%= @category.title %></h1>
 <p class="text-center"><%= @category.description %></p>
-<div class="mb-5"style="background:#EEEEEE; height:20px;"></div>
+<% progress = (100 / @category.words.count) * @lesson.words.count %>
+<div class="progress mb-3">
+    <div class="progress-bar bg-warning" role="progressbar" style="width: <%= progress %>%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
 <p class="text-center"> of 17</p>
 <div class="card text-center" style="width: 600px; margin:0 auto;">
     <div class="card-header">

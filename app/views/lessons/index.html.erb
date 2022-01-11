@@ -11,12 +11,12 @@
                     <div class="card-body" style="display:flex; justify-content:space-between;">
                         <p><%= category.description %></p>
                         <% if !current_user.lesson_taken(category) %>
-                        <%= link_to "Start lesson","" ,class:"btn btn-success" %>
+                        <%= link_to "Start lesson",lessons_path(user: current_user.id, category: category) , method: :post, class:"btn btn-success" %>
                         <% else %>
                             <% if current_user.lesson_taken(category).result %>
-                                <%= link_to "See result" ,"", class:"btn btn-primary" %>
+                                <%= link_to "See result" ,lesson_path(id: current_user.lesson_taken(category)), class:"btn btn-primary" %>
                             <% else %>
-                                <%= link_to "Continue lesson" ,"", class:"btn btn-danger" %>
+                                <%= link_to "Continue lesson" ,lessons_path(user: current_user.id, category: category),method: :post, class:"btn btn-danger" %>
                             <% end %>
                         <% end %>
                     </div>

@@ -4,10 +4,14 @@ class LessonsController < ApplicationController
   end
   def create
     category = Category.find(params[:category])
-    lesson = category.lessons.new(user_id: params[:user])
+    create_lesson = category.lessons.new(user_id: params[:user])
+    @lesson = current_user.lessons.find_by(category_id: category.id)
     if category.words.any?
-      if lesson.save
-        redirect_to new_lesson_answer_path(lesson)
+      unless @lesson
+        create_lesson.save
+        redirect_to new_lesson_answer_path(create_lesson)
+      else
+        redirect_to new_lesson_answer_path(@lesson)
       end
     else
       flash[:danger] = "There are no words available"
@@ -16,6 +20,9 @@ class LessonsController < ApplicationController
   end
   def show
     @lesson = Lesson.find(params[:id])
+    @category=Category.find(@lesson.category_id)
+    @words = @category.words.all
+    @answers = @lesson.answers.all  
   end
   
 end
