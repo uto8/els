@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
       lesson = Lesson.find(params[:lesson_id])
       lesson.result = lesson.lesson_result
       if lesson.save
-        abort
+        redirect_to lesson_path(lesson)
       end 
     end
 

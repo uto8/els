@@ -22,9 +22,10 @@ Rails.application.routes.draw do
   end
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :words_learned
     end
   end
+  
   resources :relationships, only: [:create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

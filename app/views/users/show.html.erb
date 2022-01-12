@@ -14,5 +14,6 @@
         <% if @user.admin == true %>
             <%= link_to "Admin dashboad", admin_dashboard_path, class: "btn btn-success btn-block"%> 
         <% end %>
+        <%= link_to "words learned", words_learned_user_path(@user)%>
     </div>
 </div>
