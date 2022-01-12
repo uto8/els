@@ -32,6 +32,14 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  def following
+    @users = User.find(params[:id])
+    @following = @users.following.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+  end
+  def followers
+    @users = User.find(params[:id])
+    @followers = @users.followers.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+  end
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confimation)
