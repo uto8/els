@@ -3,14 +3,10 @@ class Relationship < ApplicationRecord
     belongs_to :followed, class_name:"User"
     validates :follower_id, presence: true
     validates :followed_id, presence: true
-    
-    has_many :active_relationships, foreign_key: "follower_id",
-                                    class_name: "Relationship",
-                                    dependent: :destroy
-    has_many :followed_users, through: :active_relationships, source: :followed
-
-    has_many :passive_relationships, foreign_key: "followed_id",
-                                     class_name: "Relationship",
-                                     dependent: :destroy
-    has_many :followers, through: :passive_relationships, source: :follower
+    has_one :activity, as: :action, dependent: :destroy
+    after_create :relationship_activity
+    private
+    def relationship_activity
+        create_activity(user: follower)
+    end
 end
