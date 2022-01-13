@@ -17,6 +17,7 @@ class User < ApplicationRecord
                                     class_name: "Relationship",
                                     dependent: :destroy
     has_many :followers, through: :passive_relationships, source: :follower
+    has_many :activities, dependent: :destroy
     def lesson_taken(category)
         lessons.find_by(category_id: category.id)
     end

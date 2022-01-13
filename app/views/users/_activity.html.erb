@@ -1,0 +1,32 @@
+<div class="card">
+            <div class="card-header">Activity feeds</div>
+            <div class="card-body">
+              <% @activity_feeds.each do |activity| %>
+                <div class="card">
+                    <div class="card-body row">
+                    <% if activity.user == current_user
+                    user= "You "
+                    else 
+                    user= activity.user.name
+                    end%>
+                    
+                        <div class="col-2"><%= gravatar_for activity.user, size: 52 %>
+                          
+                        </div>
+                        
+                        <div class="col-8">
+                            <%= link_to user, user_path(user) %>
+                            <% if activity.action_type == "Relationship" %>
+                                <% follow = User.find(activity.action_id) %>
+                                follow <%= link_to follow.name, follow %>
+                            <% else %>
+                                <% lesson = Lesson.find(activity.action_id) %>
+                                learn <%= lesson.result.to_i %> of <%= lesson.category.words.count %> in <%= link_to lesson.category.title, lesson %>
+                            <% end %>
+                            <p><%= time_ago_in_words(activity.created_at) %> ago</p>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>

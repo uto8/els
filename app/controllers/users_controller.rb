@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
+    @activity_feeds= @user.activities
   end
   def edit
     @user = User.find(params[:id])
@@ -44,6 +45,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @words = @user.answers.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
   end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confimation)

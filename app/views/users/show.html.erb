@@ -1,5 +1,6 @@
 <% provide(:title, @user.name) %>
-<div class="card" style="width: 18rem;">
+<div class="row">
+<div class="card col-4">
     <div class="card-header">User-Information</div>
     <div class="card-body text-center">
         <%= gravatar_for(@user, size: 200) %>
@@ -16,4 +17,8 @@
         <% end %>
         <%= link_to "words learned", words_learned_user_path(@user)%>
     </div>
+</div>
+<div class="col-8">
+    <%= render "activity" %>
+</div>
 </div>
